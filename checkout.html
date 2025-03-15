@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Sajjad Shopping Center</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .checkout-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        .payment-options {
+            margin-top: 20px;
+        }
+        .payment-options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background: #ff9900;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .payment-options button:hover {
+            background: #ff5700;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <h2>Checkout</h2>
+        <p>Review your order and select a payment method.</p>
+        <h3>Total: PKR <span id="total">0</span></h3>
+        
+        <div class="payment-options">
+            <button onclick="selectPayment('Cash on Delivery')">Cash on Delivery</button>
+            <button onclick="selectPayment('Easypaisa')">Easypaisa (03302022681)</button>
+            <button onclick="selectPayment('Upaisa')">Upaisa (03302022681)</button>
+        </div>
+    </div>
+    
+    <script>
+        let totalAmount = localStorage.getItem('cartTotal') || 0;
+        document.getElementById('total').innerText = totalAmount;
+
+        function selectPayment(method) {
+            alert('You have selected ' + method + '. Your order will be processed.');
+            localStorage.removeItem('cartTotal');
+        }
+    </script>
+</body>
+</html>
