@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .sidebar {
+            width: 220px;
+            background-color: #232f3e;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .auth-box {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff9900, #ff5700);
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        }
+        .container {
+            margin-left: 260px;
+            max-width: 1200px;
+            padding: 20px;
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .checkout-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff9900;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="auth-box">
+            <h3>Account</h3>
+            <button onclick="signin()">Sign In</button>
+            <button onclick="signup()">Sign Up</button>
+        </div>
+        <h3>Categories</h3>
+        <button onclick="filterCategory('shoes')">Shoes</button>
+        <button onclick="filterCategory('women')">Women</button>
+        <button onclick="filterCategory('men')">Men</button>
+        <button onclick="filterCategory('footwear')">Footwear</button>
+        <button onclick="filterCategory('skincare')">Skin Care</button>
+    </div>
+    
+    <div class="container">
+        <h1>Welcome to Sajjad Shopping Center</h1>
+        <div class="product-list" id="product-list">
+            <div class="product" data-category="shoes">
+                <h3>Running Shoes</h3>
+                <p>PKR 5000</p>
+                <button onclick="addToCart('Running Shoes', 5000)">Add to Cart</button>
+            </div>
+            <div class="product" data-category="women">
+                <h3>Women's Dress</h3>
+                <p>PKR 4000</p>
+                <button onclick="addToCart('Women\'s Dress', 4000)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="checkout-container">
+        <h3>Shopping Cart</h3>
+        <ul id="cart"></ul>
+        <h3>Total: PKR <span id="total">0</span></h3>
+        <button class="checkout-button" onclick="checkout()">Checkout</button>
+    </div>
+    
+    <script>
+        let cart = [];
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+        }
+        function updateCart() {
+            let cartList = document.getElementById('cart');
+            let total = document.getElementById('total');
+            cartList.innerHTML = '';
+            let sum = 0;
+            cart.forEach(item => {
+                let li = document.createElement('li');
+                li.innerText = `${item.name} - PKR ${item.price.toFixed(0)}`;
+                cartList.appendChild(li);
+                sum += item.price;
+            });
+            total.innerText = sum.toFixed(0);
+        }
+        function checkout() {
+            alert('Choose a payment method:\n1. Cash on Delivery\n2. Easypaisa (03302022681)\n3. Upaisa (03302022681)');
+        }
+    </script>
+</body>
+</html>
