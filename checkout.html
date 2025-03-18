@@ -3,64 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Sajjad Shopping Center</title>
+    <title>Checkout Page</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f5f5f5;
             text-align: center;
-        }
-        .checkout-container {
-            max-width: 600px;
-            margin: 50px auto;
             padding: 20px;
+        }
+        .checkout-box {
             background: white;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+            padding: 20px;
             border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .payment-options {
-            margin-top: 20px;
-        }
-        .payment-options button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
+        button {
             background: #ff9900;
-            border: none;
             color: white;
-            font-size: 16px;
+            border: none;
+            padding: 10px 15px;
             cursor: pointer;
             border-radius: 5px;
-        }
-        .payment-options button:hover {
-            background: #ff5700;
+            font-size: 16px;
+            margin: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="checkout-container">
-        <h2>Checkout</h2>
-        <p>Review your order and select a payment method.</p>
-        <h3>Total: PKR <span id="total">0</span></h3>
-        
-        <div class="payment-options">
-            <button onclick="selectPayment('Cash on Delivery')">Cash on Delivery</button>
-            <button onclick="selectPayment('Easypaisa')">Easypaisa (03302022681)</button>
-            <button onclick="selectPayment('Upaisa')">Upaisa (03302022681)</button>
-        </div>
-    </div>
-    
-    <script>
-        let totalAmount = localStorage.getItem('cartTotal') || 0;
-        document.getElementById('total').innerText = totalAmount;
 
-        function selectPayment(method) {
-            alert('You have selected ' + method + '. Your order will be processed.');
-            localStorage.removeItem('cartTotal');
+    <div class="checkout-box">
+        <h2>Checkout</h2>
+        <p>Total: PKR <span id="checkout-total">0</span></p>
+        <h3>Select Payment Method:</h3>
+        <button onclick="payCOD()">Cash on Delivery</button>
+        <button onclick="payEasypaisa()">Easypaisa (03302022681)</button>
+        <button onclick="payUpaisa()">Upaisa (03302022681)</button>
+    </div>
+
+    <script>
+        function payCOD() {
+            alert('You selected Cash on Delivery. Your order is placed!');
         }
+        function payEasypaisa() {
+            alert('Send payment to Easypaisa: 03302022681. Your order will be confirmed!');
+        }
+        function payUpaisa() {
+            alert('Send payment to Upaisa: 03302022681. Your order will be confirmed!');
+        }
+
+        // Display total price from cart
+        document.getElementById("checkout-total").innerText = localStorage.getItem("totalAmount") || 0;
     </script>
+
 </body>
 </html>
